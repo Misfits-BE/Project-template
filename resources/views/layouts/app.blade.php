@@ -71,7 +71,7 @@
                                     </a>
                   
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('account.info') }}">
                                             <i class="dropdown-icon fe fe-user"></i> Settings
                                         </a>
                     
@@ -81,7 +81,7 @@
                                             <i class="dropdown-icon fe fe-help-circle"></i> Need help?
                                         </a>
                                         
-                                        <a class="dropdown-item" href="">
+                                        <a class="dropdown-item" href="{{ route('home') }}">
                                             <i class="dropdown-icon fe fe-settings"></i> Admin panel
                                         </a>
 
