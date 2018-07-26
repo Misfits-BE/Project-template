@@ -3,7 +3,7 @@
         <h4 class="align-left mb-0">Account settings</h4>
     </a>
 
-    <a href="{{ route('account.info') }}" class="list-group-item active list-group-item-action">
+    <a href="{{ route('account.info') }}" class="list-group-item {{ isActiveRoute('account.info') }} list-group-item-action">
         <span class="icon mr-3"><i class="fe fe-user"></i></span>
         Account information
     </a>
