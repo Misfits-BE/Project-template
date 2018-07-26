@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Account\SecurityValidator;
 
 /**
  * Class SecuritySettingsController 
@@ -45,8 +46,9 @@ class SecuritySettingsController extends Controller
     /**
      * @todo Implement phpunit test
      */
-    public function update(): RedirectResponse
+    public function update(SecurityValidator $input): RedirectResponse
     {
+        $this->userRepository->getUser()->update($input->all());
         return redirect()->route('account.security');
     }
 }
