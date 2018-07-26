@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Account routes
-Route::get('/account', 'Account\InformationSettingsController@index')->name('account.info');
+Route::get('/account/info', 'Account\InformationSettingsController@index')->name('account.info');
+Route::patch('/account/info' , 'Account\InformationSettingsController@update')->name('account.info.update');

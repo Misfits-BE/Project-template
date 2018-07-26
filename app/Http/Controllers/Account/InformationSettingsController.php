@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Account;
 
+use App\Http\Requests\Account\InformationValidation;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
@@ -33,5 +35,18 @@ class InformationSettingsController extends Controller
     public function index(): View
     {
         return view('account.settings-info');
+    }
+
+    /**
+     * Update the account information resource in the storage.
+     *
+     * @todo Implement phpunit tests
+     *
+     * @param  InformationValidation $input Form request class That handles the validation.
+     * @return RedirectResponse
+     */
+    public function update(InformationValidation $input): RedirectResponse
+    {
+        // TODO: Implement function
     }
 }
