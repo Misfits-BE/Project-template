@@ -76,14 +76,6 @@
                                         </a>
                     
                                         <div class="dropdown-divider"></div>
-                    
-                                        <a class="dropdown-item" href="#">
-                                            <i class="dropdown-icon fe fe-help-circle"></i> Need help?
-                                        </a>
-                                        
-                                        <a class="dropdown-item" href="{{ route('home') }}">
-                                            <i class="dropdown-icon fe fe-settings"></i> Admin panel
-                                        </a>
 
                                         <a class="dropdown-item" href="#">
                                             <i class="dropdown-icon fe fe-log-out"></i> Sign out
@@ -115,10 +107,16 @@
                         <div class="col-lg order-lg-first">
 				            <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
 	                            <li class="nav-item">
-		                            <a href="{{ url('/') }}" class="nav-link"><i class="fe fe-home"></i> Home</a>
+		                            <a href="{{ route('home') }}" class="nav-link"><i class="fe fe-home"></i> Home</a>
 	                            </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link"><i class="fe fe-file-text"></i> Petitions</a>
+                                    <a href="" class="nav-link"><i class="fe fe-users"></i> Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="" class="nav-link"><i class="fe fe-file-text"></i> Fragments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link"><i class="fe fe-list"></i> Logs</a>
                                 </li>
                                 
                                 @if (! auth()->check())
@@ -137,44 +135,6 @@
 
             <div class="my-3 my-md-5">
                 @yield('content')
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">First link</a></li>
-                                    <li><a href="#">Second link</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">Third link</a></li>
-                                    <li><a href="#">Fourth link</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">Fifth link</a></li>
-                                    <li><a href="#">Sixth link</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">Other link</a></li>
-                                    <li><a href="#">Last link</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mt-4 mt-lg-0">
-                        Lorem ipsum dolor sit amet, et amet vitae fringilla dolor. Vel morbi blandit sed ipsumo.
-                    </div>
-                </div>
             </div>
         </div>
 
