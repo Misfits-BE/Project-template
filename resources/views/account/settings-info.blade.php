@@ -7,6 +7,7 @@
                 <form class="card" method="POST" action="{{ route('account.info.update') }}">
                     @method('PATCH')    {{-- HTTP method spoofing --}}
                     @csrf               {{-- Form field protection --}}
+                    @form($authUser)    {{-- Bind the data from the authenticated user to the form --}}
 
                     <div class="card-body">
                         <h3 class="card-title">Edit account information</h3>
