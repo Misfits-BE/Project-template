@@ -4,9 +4,67 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d5c8081584fbc6299e68c6d8785c2c4e",
-    "content-hash": "067452a153bac6d489ec56035ffaa760",
+    "hash": "c11545bafa049b16fbe1b17019dc8166",
+    "content-hash": "d3743b54cbed2db99f7f5b95bedf6bcd",
     "packages": [
+        {
+            "name": "activismebe/database-layering",
+            "version": "0.34",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Misfits-BE/L5.x-database-layering.git",
+                "reference": "9d16cb498faec0ac9cf2c339be10f52aac84d2c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Misfits-BE/L5.x-database-layering/zipball/9d16cb498faec0ac9cf2c339be10f52aac84d2c2",
+                "reference": "9d16cb498faec0ac9cf2c339be10f52aac84d2c2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "5.4.*|5.5.*|5.6.*",
+                "illuminate/database": "5.4.*|5.5.*|5.6.*",
+                "illuminate/filesystem": "5.4.*|5.5.*|5.6.*",
+                "illuminate/support": "5.4.*|5.5.*|5.6.*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.8",
+                "mockery/mockery": "dev-master@dev",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~5.7|~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "ActivismeBE\\DatabaseLayering\\Repositories\\Providers\\RepositoryProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ActivismeBE\\DatabaseLayering\\": "src/ActivismeBE/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Repositories",
+            "homepage": "https://www.activisme.be",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "repositories",
+                "repository"
+            ],
+            "time": "2018-04-08 21:32:31"
+        },
         {
             "name": "activismebe/laravel-form-helpers",
             "version": "1.2.0",

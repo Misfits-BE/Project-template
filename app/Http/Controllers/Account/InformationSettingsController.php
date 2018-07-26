@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Account;
 
 use App\Http\Requests\Account\InformationValidation;
+use App\Repositories\UserRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,14 +16,19 @@ use Illuminate\Contracts\View\View;
  */
 class InformationSettingsController extends Controller
 {
+    /** @var \App\Repositories\UserRepository $userRepository */
+    private $userRepository; 
+
     /**
      * InformationSettingsController Constructor
      * 
+     * @param  UserRepository $userRepository The user resource abstraction layer from the storage.
      * @return void
      */
-    public function __construct() 
+    public function __construct(UserRepository $userRepository) 
     {
         $this->middleware(['auth']);
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -47,6 +53,7 @@ class InformationSettingsController extends Controller
      */
     public function update(InformationValidation $input): RedirectResponse
     {
-        // TODO: Implement function
+        $this->userRepository->getUser()->update($input->all()); 
+        return redirect()->route('account.info');
     }
 }

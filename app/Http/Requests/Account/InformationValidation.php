@@ -24,6 +24,8 @@ class InformationValidation extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
+     * @todo Implement unique validation and database config for username. 
+     * 
      * @return array
      */
     public function rules(): array
@@ -32,7 +34,7 @@ class InformationValidation extends FormRequest
             'name' => 'required|string|max:255',
             'firstname' => 'required|string|max:120',
             'lastname' => 'required|string|max:120',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users,email,' . auth()->user()->id,
         ];
     }
 }
