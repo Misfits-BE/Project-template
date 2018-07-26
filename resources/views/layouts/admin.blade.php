@@ -62,11 +62,11 @@
                 
                                 <div class="dropdown">
                                     <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                                        <span class="avatar" style="background-image: url({{ Avatar::create(auth()->user()->name)->setBorder(0, '#ffffff')->toBase64() }})"></span>
+                                        <span class="avatar" style="background-image: url({{ Avatar::create($authUser->name)->setBorder(0, '#ffffff')->toBase64() }})"></span>
                                         <span class="ml-2 d-none d-lg-block">
                                         
-                                        <span class="text-default">{{ auth()->user()->name }}</span>
-                                            <small class="text-muted d-block mt-1">Administrator</small>
+                                        <span class="text-default">{{ $authUser->email }}</span>
+                                            <small class="text-muted d-block mt-1">{{ $authUser->name }}</small>
                                         </span>
                                     </a>
                   
