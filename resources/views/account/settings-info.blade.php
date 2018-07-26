@@ -11,6 +11,7 @@
 
                     <div class="card-body">
                         <h3 class="card-title">Edit account information</h3>
+                        
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">

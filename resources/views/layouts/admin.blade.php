@@ -65,8 +65,8 @@
                                         <span class="avatar" style="background-image: url({{ Avatar::create($authUser->name)->setBorder(0, '#ffffff')->toBase64() }})"></span>
                                         <span class="ml-2 d-none d-lg-block">
                                         
-                                        <span class="text-default">{{ $authUser->email }}</span>
-                                            <small class="text-muted d-block mt-1">{{ $authUser->name }}</small>
+                                        <span class="text-default">{{ ucfirst($authUser->email) }}</span>
+                                            <small class="text-muted d-block mt-1">{{ ucfirst($authUser->name) }}</small>
                                         </span>
                                     </a>
                   
@@ -95,15 +95,6 @@
            <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
 	            <div class="container">
 		            <div class="row align-items-center">
-			            <div class="col-lg-3 ml-auto">
-				            <form class="input-icon my-3 my-lg-0">
-					            <input type="search" class="form-control header-search" placeholder="Search petition…" tabindex="1">
-					            <div class="input-icon-addon">
-						            <i class="fe fe-search"></i>
-					            </div>
-				            </form>
-			            </div>
-			            
                         <div class="col-lg order-lg-first">
 				            <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
 	                            <li class="nav-item">
