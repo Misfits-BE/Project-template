@@ -63,7 +63,7 @@
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     <div class="small text-muted">Last login</div>
-                                    <div>4 minutes ago</div>
+                                    <div>{{ $user->last_login_at ? $user->last_login_at->diffForHumans() : '-' }}</div>
                                 </td>
                                 <td class="text-center">
                                     <div class="item-action dropdown">
