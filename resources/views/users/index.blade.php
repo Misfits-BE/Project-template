@@ -48,7 +48,7 @@
                             <tr>
                                 <td class="text-center">
                                     <div class="avatar avatar d-block" style="background-image: url({{ Avatar::create($user->name)->setBorder(0, '#ffffff')->toBase64() }})">
-                                        <span class="avatar-status bg-green"></span>
+                                        <span class="avatar-status {{ $user->isOnline() ? 'bg-green' : 'bg-red' }}"></span>
                                     </div>
                                 </td>
                                 <td>
@@ -67,16 +67,14 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="item-action dropdown">
-                                        <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i
-                                                    class="fe fe-more-vertical"></i></a>
+                                        <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fe fe-tag"></i> Action </a>
-                                            <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fe fe-edit-2"></i> Another action </a>
-                                            <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fe fe-message-square"></i> Something else
-                                                here</a>
+                                            <a href="javascript:void(0)" class="dropdown-item">
+                                                <i class="dropdown-icon fe fe-tag"></i> View user
+                                            </a>
+                                            <a href="javascript:void(0)" class="dropdown-item">
+                                                <i class="dropdown-icon fe fe-edit-2"></i> Edit user
+                                            </a>
                                             <div class="dropdown-divider"></div>
                                             <a href="" class="dropdown-item">
                                                 <i class="dropdown-icon text-danger fe fe-trash-2"></i> Delete account</a>
@@ -84,7 +82,7 @@
                                     </div>
                                 </td>
                             </tr>
-                        @empty
+                        @empty {{-- When no user match with the criteria. --}}
                         @endforelse
                         </tbody>
                     </table>
