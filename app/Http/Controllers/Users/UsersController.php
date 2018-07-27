@@ -32,11 +32,22 @@ class UsersController extends Controller
     /**
      * Index view for the user management.
      *
+     * @param  Request $params The filter paramfor the user resource collection from the storage.
      * @return View
      */
-    public function index(): View
+    public function index(Request $params): View
     {
-        $users = $this->userRepository->getUsers();
+        $users = $this->userRepository->getUsers($params->get('filter'));
         return view('users.index', compact('users'));
+    }
+
+    /**
+     * Application view for creating a new user in the application.
+     *
+     * @return View
+     */
+    public function create(): View
+    {
+
     }
 }

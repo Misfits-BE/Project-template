@@ -27,3 +27,4 @@ Route::patch('account/security', 'Account\SecuritySettingsController@update')->n
 
 // Users Route
 Route::get('/users', 'Users\UsersController@index')->name('users.index');
+Route::get('/users/create', 'Users\UsersController@create')->name('users.create');

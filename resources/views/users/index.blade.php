@@ -17,7 +17,7 @@
                         <a class="dropdown-item" href="{{ route('users.index', ['filter' => 'deleted']) }}">Deleted users</a>
                     </div>
                 </div>
-                <a class="btn btn-secondary ml-2">
+                <a href="{{ route('users.create') }}" class="btn btn-secondary ml-2">
                     <i class="fe fe-user-plus"></i>
                 </a>
                 <div class="input-icon ml-2">

@@ -39,9 +39,14 @@ class UserRepository extends Repository
         return $this->findOrFail($userId, $columns);
     }
 
-    public function getUsers(): array 
+    /**
+     * Function to determine the user collection out of the database.
+     *
+     * @param  null|string $filter The filter parameter for query builder instance.
+     * @return array
+     */
+    public function getUsers(?string $filter): array
     {
-        $collection = $this->simplePaginate(15);
-        return ['collection' => $collection, 'count' => $this->model->count()];
+        return ['collection' => $this->simplePaginate(15), 'count' => $this->model->count()];
     }
 }
