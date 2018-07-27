@@ -98,10 +98,14 @@
                         <div class="col-lg order-lg-first">
 				            <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
 	                            <li class="nav-item">
-		                            <a href="{{ route('home') }}" class="nav-link"><i class="fe fe-home"></i> Home</a>
+		                            <a href="{{ route('home') }}" class="nav-link {{ isActiveRoute('home') }}">
+                                        <i class="fe fe-home"></i> Home
+                                    </a>
 	                            </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link"><i class="fe fe-users"></i> Users</a>
+                                    <a href="{{ route('users.index')  }}" class="nav-link {{ areActiveRoutes(['users.index']) }}">
+                                        <i class="fe fe-users"></i> Users
+                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="" class="nav-link"><i class="fe fe-file-text"></i> Fragments</a>

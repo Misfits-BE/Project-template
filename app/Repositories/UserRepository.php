@@ -38,4 +38,10 @@ class UserRepository extends Repository
 
         return $this->findOrFail($userId, $columns);
     }
+
+    public function getUsers(): array 
+    {
+        $collection = $this->simplePaginate(15);
+        return ['collection' => $collection, 'count' => $this->model->count()];
+    }
 }

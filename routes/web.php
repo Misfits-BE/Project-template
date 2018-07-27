@@ -24,3 +24,6 @@ Route::get('/account/info', 'Account\InformationSettingsController@index')->name
 Route::patch('/account/info' , 'Account\InformationSettingsController@update')->name('account.info.update');
 Route::get('/account/security', 'Account\SecuritySettingsController@index')->name('account.security');
 Route::patch('account/security', 'Account\SecuritySettingsController@update')->name('account.security.update');
+
+// Users Route
+Route::get('/users', 'Users\UsersController@index')->name('users.index');
