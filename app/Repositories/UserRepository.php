@@ -6,7 +6,7 @@ use App\User;
 use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use App\Repositories\Criteria\Users\AdminScope;
-use App\Repositories\Criteria\Users\SortRecent;
+use App\Repositories\Criteria\Users\SortRecentScope;
 use App\Repositories\Criteria\Users\DeletedScope;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -51,9 +51,10 @@ class UserRepository extends Repository
     public function getUsers(?string $filter): array
     {
         switch ($filter) {
-            case 'admins':  $this->pushCriteria(new AdminScope());   break;
-            case 'recent':  $this->pushCriteria(new SortRecent());   break;
-            case 'deleted': $this->pushCriteria(new DeletedScope()); break;  
+            case 'admins':      $this->pushCriteria(new AdminScope());       break;
+            case 'recent':      $this->pushCriteria(new SortRecentScope());  break;
+            case 'deleted':     $this->pushCriteria(new DeletedScope());     break;  
+            case 'deactivated': $this->pushCriteria(new DeactivatedScope()); break;
         }
 
         return ['collection' => $this->simplePaginate(15), 'count' => $this->model->count()];

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
  *
  * @package App\Repositories\Criteria\Users
  */
-class SortRecent extends Criteria 
+class SortRecentScope extends Criteria 
 {
     /**
      * @param                       $model      Tehe Eloquent database model where the criterie should applied on.

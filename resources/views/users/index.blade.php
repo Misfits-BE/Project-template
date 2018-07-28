@@ -13,6 +13,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('users.index', ['filter' => 'recent']) }}">Recent users</a>
                         <a class="dropdown-item" href="{{ route('users.index') }}">All users</a>
+                        <a class="dropdown-item" href="{{ route('users.index', ['filter' => 'deactivated']) }}">Deactivated users</a>
                         <a class="dropdown-item" href="{{ route('users.index', ['filter' => 'admins']) }}">Administrators</a>
                         <a class="dropdown-item" href="{{ route('users.index', ['filter' => 'deleted']) }}">Deleted users</a>
                     </div>
