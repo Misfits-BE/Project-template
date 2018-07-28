@@ -17,7 +17,7 @@
         <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
         <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
         
-        <title>{{ asset('app.name') }}</title>
+        <title>{{ config('app.name') }}</title>
         
         {{-- Javascripts --}}
         <script src="{{ asset('js/app.js') }}" async></script>
@@ -99,6 +99,10 @@
            <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
 	            <div class="container">
 		            <div class="row align-items-center">
+                        <div class="col-lg-3 ml-auto">
+                            {{-- Place for optional search bar --}}
+                        </div>
+
                         <div class="col-lg order-lg-first">
 				            <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
 	                            <li class="nav-item">
@@ -107,7 +111,7 @@
                                     </a>
 	                            </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('users.index')  }}" class="nav-link {{ areActiveRoutes(['users.index', 'users.create']) }}">
+                                    <a href="{{ route('users.index')  }}" class="nav-link {{ areActiveRoutes(['users.index', 'users.create', 'users.delete']) }}">
                                         <i class="fe fe-users"></i> Users
                                     </a>
                                 </li>

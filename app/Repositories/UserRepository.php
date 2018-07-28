@@ -7,6 +7,9 @@ use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use App\Repositories\Criteria\Users\AdminScope;
 use App\Repositories\Criteria\Users\SortRecent;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class UserRepository
@@ -32,12 +35,9 @@ class UserRepository extends Repository
      * @param  array    $columns    The columns attributes u need from the resource
      * @return User
      */
-    public function getUser(?int $userId = null, array $columns = ['*']): User
+    public function getUser($userId = null, array $columns = ['*']): User
     {
-        if (is_null($userId)) {
-            return $this->findOrFail(auth()->user()->id, $columns);
-        }
-
+        $userId = is_null($userId) ? auth()->user()->id : $userId;
         return $this->findOrFail($userId, $columns);
     }
 
@@ -55,5 +55,24 @@ class UserRepository extends Repository
         }
 
         return ['collection' => $this->simplePaginate(15), 'count' => $this->model->count()];
+    }
+
+    /**
+     * Perform the delete operation for a user in the storage. 
+     * 
+     * @see /App/Observers/UserObserver::deleted For the activity log.
+     * 
+     * @param  Request $input The collection bag that holds all the request information
+     * @param  User    $user  The user resource entity from the storage.
+     * @return void
+     */
+    public function performUserDelete(Request $input, $user): void 
+    {
+        Validator::make($input->all(), ['password' => 'string|required'])->validate();
+
+        if (Hash::check($input->password, $this->getUser()->password)) { // The password match 
+            $user->delete();
+            flash("The login for {$user->firstname} {$user->lastname} has been deleted.")->success()->important();
+        }
     }
 }

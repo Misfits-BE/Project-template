@@ -35,4 +35,15 @@ class UserObserver
             }
         }
     }
+
+     /**
+     * Handle the User "deleted" event.
+     *
+     * @param  \App\User  $user The entity from the deleted user resource in the storage.
+     * @return void
+     */
+    public function deleted(User $user)
+    {
+        $this->logHandlingOnUsers($user, 'Has deleted the login for {$user->firstname} {$user->lastname}');
+    }
 }

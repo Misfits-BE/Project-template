@@ -79,7 +79,7 @@
                                                 <i class="dropdown-icon fe fe-lock"></i> Deactivate user
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a href="" class="dropdown-item">
+                                            <a href="{{ route('users.delete', $user) }}" class="dropdown-item">
                                                 <i class="dropdown-icon text-danger fe fe-trash-2"></i> Delete account</a>
                                         </div>
                                     </div>
