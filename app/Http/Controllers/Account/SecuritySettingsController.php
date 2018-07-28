@@ -44,7 +44,12 @@ class SecuritySettingsController extends Controller
     }
 
     /**
+     * Update the account security resurce in the storage. 
+     * 
      * @todo Implement phpunit test
+     * 
+     * @param  SecurityValidator $input The form request class that handles the form validation.
+     * @return RedirectResponse
      */
     public function update(SecurityValidator $input): RedirectResponse
     {

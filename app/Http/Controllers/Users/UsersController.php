@@ -59,7 +59,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Crate a new user resource in the storage 
+     * Create a new user resource in the storage 
+     * 
+     * @see \App\Observers\UserObserver::created For the password registration.
      * 
      * @param  InformationValidation    The form request class that handles the input validation. 
      * @return RedirectResponse
@@ -67,6 +69,7 @@ class UsersController extends Controller
     public function store(InformationValidation $input): RedirectResponse 
     {
         if ($user = $this->userRepository->create($input->all())) {
+            $user->assignRole('user');
             flash("The user account for {$user->firstname} {$user->lastname} has been created.")->success();
         }
 

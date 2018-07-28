@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class User
@@ -14,7 +15,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +29,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at', 'last_login_at', 'birth_date'];
+    protected $dates = ['created_at', 'updated_at', 'last_login_at', 'birth_date', 'deleted_at'];
 
     /**
      * The attributes that should be hidden for arrays.
