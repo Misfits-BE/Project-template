@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\User;
 use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use App\Repositories\Criteria\Users\AdminScope;
+use App\Repositories\Criteria\Users\SortRecent;
 
 /**
  * Class UserRepository
@@ -47,6 +49,11 @@ class UserRepository extends Repository
      */
     public function getUsers(?string $filter): array
     {
+        switch ($filter) {
+            case 'admins': $this->pushCriteria(new AdminScope()); break;
+            case 'recent': $this->pushCriteria(new SortRecent()); break;
+        }
+
         return ['collection' => $this->simplePaginate(15), 'count' => $this->model->count()];
     }
 }

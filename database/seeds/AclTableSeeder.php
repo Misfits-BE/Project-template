@@ -48,7 +48,7 @@ class AclTableSeeder extends Seeder
         // Confirm roles needed.
         if ($this->command->confirm('Create roles for user, default is admin and user?', true)) {
             // Ask roles from input
-            $inputRoles = $this->command->ask('Enter roles in comma separated format.', 'admin, user');
+            $inputRoles = $this->command->ask('Enter roles in comma separated format.', 'admin,user');
 
             foreach (explode(',', $inputRoles) as $role) { // Application roles
                 $role = $this->roleRepository->firstOrCreate(['name' => trim($role)]);
