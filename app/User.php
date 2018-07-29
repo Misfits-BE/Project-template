@@ -7,15 +7,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
 
 /**
  * Class User
  *
  * @package App
  */
-class User extends Authenticatable
+class User extends Authenticatable implements BannableContract
 {
-    use Notifiable, HasRoles, SoftDeletes;
+    use Notifiable, HasRoles, SoftDeletes, Bannable;
 
     /**
      * The attributes that are mass assignable.
@@ -29,7 +31,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at', 'last_login_at', 'birth_date', 'deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'last_login_at', 'birth_date', 'deleted_at', 'banned_at'];
 
     /**
      * The attributes that should be hidden for arrays.
