@@ -25,25 +25,14 @@ class UserObserver
      */
     public function created(User $user): void
     {
+        dd('works');
         if (auth()->check() && auth()->user()->hasRole('admin')) {
             $password = str_random(15);
-            $this->logHandlingOnUsers($user, "Has created an login for {$user->firstname} {$user->lastname}");
             
             if ($user->update(['password' => $password])) { // Password registration
                 $when = now()->addMinute();
                 $user->notify((new LoginCreated($user, $password))->delay($when));
             }
         }
-    }
-
-     /**
-     * Handle the User "deleted" event.
-     *
-     * @param  \App\User  $user The entity from the deleted user resource in the storage.
-     * @return void
-     */
-    public function deleted(User $user)
-    {
-        $this->logHandlingOnUsers($user, "Has deleted the login for {$user->firstname} {$user->lastname}");
     }
 }

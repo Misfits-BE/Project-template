@@ -10,6 +10,7 @@ use Illuminate\View\View;
 use App\Repositories\RoleRepository;
 use App\Http\Requests\Account\InformationValidation;
 use App\User;
+use App\Helpers\ActivityLog;
 
 /**
  * Class UsersController
@@ -72,6 +73,7 @@ class UsersController extends Controller
     {
         if ($user = $this->userRepository->create($input->all())) {
             $user->assignRole('user');
+            $this->logHandlingOnUsers($user, "Has created an login for {$user->firstname} {$user->lastname}");
             flash("The user account for {$user->firstname} {$user->lastname} has been created.")->success();
         }
 
@@ -93,6 +95,8 @@ class UsersController extends Controller
 
         // ELSE proceed delete operation
         $this->userRepository->performUserDelete($request, $user);
+        $this->logHandlingOnUsers($user, "Has deleted the login for {$user->firstname} {$user->lastname}");
+
         return redirect()->route('users.index');
     }
 }
