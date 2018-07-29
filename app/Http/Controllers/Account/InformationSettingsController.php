@@ -27,7 +27,7 @@ class InformationSettingsController extends Controller
      */
     public function __construct(UserRepository $userRepository) 
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'role:admin', 'forbid-banned-user']);
         $this->userRepository = $userRepository;
     }
 

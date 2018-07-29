@@ -27,7 +27,7 @@ class SecuritySettingsController extends Controller
      */
     public function __construct(UserRepository $userRepository)
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'forbid-banned-user', 'role:admin']);
         $this->userRepository = $userRepository;
     }
 
