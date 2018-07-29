@@ -44,6 +44,6 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        $this->logHandlingOnUsers($user, 'Has deleted the login for {$user->firstname} {$user->lastname}');
+        $this->logHandlingOnUsers($user, "Has deleted the login for {$user->firstname} {$user->lastname}");
     }
 }
