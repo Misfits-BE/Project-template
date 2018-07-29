@@ -31,3 +31,6 @@ Route::get('/users/create', 'Users\UsersController@create')->name('users.create'
 Route::get('/users/delete/{user}', 'Users\UsersController@destroy')->name('users.delete');
 Route::delete('/users/delete/{user}', 'Users\UsersController@destroy')->name('users.destroy');
 Route::post('/users/store', 'Users\UsersController@store')->name('users.store');
+
+// User activation/deactivation routes
+Route::get('/users/deactivate/{user}', 'Users\ActiveStateController@create')->name('users.deactivate');

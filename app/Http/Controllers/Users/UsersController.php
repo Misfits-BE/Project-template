@@ -73,6 +73,7 @@ class UsersController extends Controller
     {
         if ($user = $this->userRepository->create($input->all())) {
             $user->assignRole('user');
+
             $this->logHandlingOnUsers($user, "Has created an login for {$user->firstname} {$user->lastname}");
             flash("The user account for {$user->firstname} {$user->lastname} has been created.")->success();
         }

@@ -111,7 +111,7 @@
                                     </a>
 	                            </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('users.index')  }}" class="nav-link {{ areActiveRoutes(['users.index', 'users.create', 'users.delete']) }}">
+                                    <a href="{{ route('users.index')  }}" class="nav-link {{ areActiveRoutes(['users.index', 'users.create', 'users.delete', 'users.deactivate']) }}">
                                         <i class="fe fe-users"></i> Users
                                     </a>
                                 </li>

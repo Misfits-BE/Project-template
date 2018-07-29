@@ -76,7 +76,7 @@
                                             <a href="javascript:void(0)" class="dropdown-item">
                                                 <i class="dropdown-icon fe fe-edit-2"></i> Edit user
                                             </a>
-                                            <a href="" class="dropdown-item">
+                                            <a href="{{ route('users.deactivate', $user) }}" class="dropdown-item">
                                                 <i class="dropdown-icon fe fe-lock"></i> Deactivate user
                                             </a>
 

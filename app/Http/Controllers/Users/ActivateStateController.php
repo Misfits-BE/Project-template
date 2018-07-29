@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use App\User;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Illuminate\Http\RedirectResponse; 
+use Illuminate\View\View;
 
 /**
  * Class DeactivateController
@@ -33,11 +34,12 @@ class ActiveStateController extends Controller
     /**
      * View for the deactivation from a user. 
      * 
+     * @param  User $user The resource entity from the user in the application. 
      * @return View
      */
-    public function create(): View 
-    {
-
+    public function create(User $user): View 
+    {   
+        return view('users.deactivate', ['user' => $user]);
     }
 
     /**

@@ -25,7 +25,6 @@ class UserObserver
      */
     public function created(User $user): void
     {
-        dd('works');
         if (auth()->check() && auth()->user()->hasRole('admin')) {
             $password = str_random(15);
             
