@@ -56,6 +56,7 @@ class ActiveStateController extends Controller
     {
         if (Hash::check($input->password, $this->userRepository->getUser()->password)) {
             $user->ban($input->except('password'));
+            flash("The login for {$user->firstname} {$user->lastname} is deactivated.")->error()->important();
         }
 
         return redirect()->route('users.index');
@@ -65,10 +66,15 @@ class ActiveStateController extends Controller
      * Delete the deactivation for the user in the storage 
      * 
      * @param  User $user The resource entity from the user in the storage
-     * @return RedirectReponse
+     * @return RedirectResponse
      */
     public function destroy(User $user): RedirectResponse 
     {
-        
+        if ($user->isBanned()) {
+            $user->unban(); // Activate the user in the application.
+            flash("The login for {$user->firstname} {$user->lastname} is activated.")->success()->important();
+        }
+
+        return redirect()->route('users.index');
     }
 }

@@ -78,7 +78,7 @@
                                             </a>
 
                                             @if ($user->isBanned())
-                                                <a href="" class="dropdown-item">
+                                                <a href="{{ route('users.activate', $user) }}" class="dropdown-item">
                                                     <i class="dropdown-icon text-success fe fe-rotate-ccw"></i> Activate user
                                                 </a>
                                             @else {{-- User is not banned in the application --}}
