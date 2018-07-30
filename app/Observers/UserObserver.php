@@ -13,8 +13,6 @@ use App\Notifications\LoginCreated;
  */
 class UserObserver
 {
-    use ActivityLog; 
-
     /**
      * Handle to the user "created" event.
      *
