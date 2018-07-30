@@ -61,12 +61,13 @@ class UserRepository extends Repository
     }
 
     /**
-     * Perform the delete operation for a user in the storage. 
-     * 
-     * @see /App/Observers/UserObserver::deleted For the activity log.
-     * 
+     * Perform the delete operation for a user in the storage.
+     *
+     * @see    /App/Observers/UserObserver::deleted For the activity log.
+     * @throws \Exception When no resource is found in the storage.
+     *
      * @param  Request $input The collection bag that holds all the request information
-     * @param  User    $user  The user resource entity from the storage.
+     * @param  User $user The user resource entity from the storage.
      * @return void
      */
     public function performUserDelete(Request $input, $user): void 
@@ -77,5 +78,18 @@ class UserRepository extends Repository
             $user->delete();
             flash("The login for {$user->firstname} {$user->lastname} has been deleted.")->success()->important();
         }
+    }
+
+    /**
+     * The resource array for all the deactivation timespans.
+     *
+     * @return array
+     */
+    public function getDeactivatedPeriods(): array
+    {
+        return [
+            '+1 week'  => 'Deactivate the user for one week.', '+2 weeks' => 'Deactivate the user for 2 weeks.',
+            '+3 weeks' => 'Deactivate the user for 3 weeks',   '+4 weeks' => 'Deactivate the user for 4 weeks.'
+        ];
     }
 }

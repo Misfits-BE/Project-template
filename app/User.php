@@ -31,7 +31,9 @@ class User extends Authenticatable implements BannableContract
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at', 'last_login_at', 'birth_date', 'deleted_at', 'banned_at'];
+    protected $dates = [
+        'created_at', 'updated_at', 'last_login_at', 'birth_date', 'deleted_at', 'banned_at'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.

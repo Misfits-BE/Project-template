@@ -34,3 +34,4 @@ Route::post('/users/store', 'Users\UsersController@store')->name('users.store');
 
 // User activation/deactivation routes
 Route::get('/users/deactivate/{user}', 'Users\ActiveStateController@create')->name('users.deactivate');
+Route::post('/users/deactivate/{user}', 'Users\ActiveStateController@store')->name('users.deactivate.store');

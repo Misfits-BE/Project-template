@@ -53,7 +53,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div>{{ $user->name }}</div>
+                                    <div>@if ($user->isBanned())<i class="text-danger mr-1 fe fe-lock"></i>@endif {{ $user->name }}</div>
                                     <div class="small text-muted">
                                         Registered: {{ $user->created_at->toFormattedDateString() }}
                                     </div>
@@ -76,9 +76,16 @@
                                             <a href="javascript:void(0)" class="dropdown-item">
                                                 <i class="dropdown-icon fe fe-edit-2"></i> Edit user
                                             </a>
-                                            <a href="{{ route('users.deactivate', $user) }}" class="dropdown-item">
-                                                <i class="dropdown-icon fe fe-lock"></i> Deactivate user
-                                            </a>
+
+                                            @if ($user->isBanned())
+                                                <a href="" class="dropdown-item">
+                                                    <i class="dropdown-icon text-success fe fe-rotate-ccw"></i> Activate user
+                                                </a>
+                                            @else {{-- User is not banned in the application --}}
+                                                <a href="{{ route('users.deactivate', $user) }}" class="dropdown-item">
+                                                    <i class="dropdown-icon fe fe-lock"></i> Deactivate user
+                                                </a>
+                                            @endif
 
                                             <div class="dropdown-divider"></div>
 

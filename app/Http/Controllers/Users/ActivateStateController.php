@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Users;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Users\DeactivationValidation;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use App\User;
-use Illuminate\Http\RedirectResponse; 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 /**
@@ -39,17 +40,25 @@ class ActiveStateController extends Controller
      */
     public function create(User $user): View 
     {   
-        return view('users.deactivate', ['user' => $user]);
+        return view('users.deactivate', [
+            'user' => $user, 'periods' => $this->userRepository->getDeactivatedPeriods()
+        ]);
     }
 
     /**
      * Store the deactivation for a user in the storage 
-     * 
+     *
+     * @param  DeactivationValidation   $input The form request class that handles all the validation.
+     * @param  User                     $user  The resource entity form the user in the application.
      * @return RedirectResponse
      */
-    public function store(): RedirectResponse 
+    public function store(DeactivationValidation $input, User $user): RedirectResponse
     {
+        if (Hash::check($input->password, $this->userRepository->getUser()->password)) {
+            $user->ban($input->except('password'));
+        }
 
+        return redirect()->route('users.index');
     }
 
     /**

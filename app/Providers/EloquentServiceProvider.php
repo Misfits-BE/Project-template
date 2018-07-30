@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Observers\BanObserver;
+use Cog\Laravel\Ban\Models\Ban;
 use Illuminate\Support\ServiceProvider;
 use App\Observers\UserObserver;
 use App\User;
@@ -21,5 +23,6 @@ class EloquentServiceProvider extends ServiceProvider
     public function boot(): void
     {
         User::observe(UserObserver::class);
+        Ban::observe(BanObserver::class);
     }
 }

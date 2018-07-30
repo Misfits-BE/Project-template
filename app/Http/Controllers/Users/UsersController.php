@@ -83,7 +83,9 @@ class UsersController extends Controller
 
     /**
      * Method for deleting a user resource in the storage
-     * 
+     *
+     * @throws \Exception when no resource is found in the storage
+     *
      * @param  Request  $request    The collection bag that holds all the request data.
      * @param  User     $user       The user entity from the storage
      * @return View|RedirectResponse
