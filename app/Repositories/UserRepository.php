@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Criteria\Users\DeactivatedScope;
 use App\User;
 use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
