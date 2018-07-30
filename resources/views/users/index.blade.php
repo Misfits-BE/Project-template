@@ -4,7 +4,7 @@
     <div class="container">
         <div class="page-header">
             <h1 class="page-title">Users</h1>
-            <div class="page-subtitle">{{ $users['collection']->firstItem() }} - {{ $users['collection']->lastItem() }} of {{ $users['count'] }} photos</div>
+            <div class="page-subtitle">{{ $users['collection']->firstItem() ?? '0' }} - {{ $users['collection']->lastItem() }} of {{ $users['count'] }} users</div>
             <div class="page-options d-flex">
                 <div class="dropdown">
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
@@ -25,7 +25,7 @@
                   <span class="input-icon-addon">
                     <i class="fe fe-search"></i>
                   </span>
-                    <input type="text" class="form-control w-10" placeholder="Search photo">
+                    <input type="text" class="form-control w-10" placeholder="Search user">
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="row row-cards row-deck">
             <div class="col-12">
                 <div class="card">
-                    <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
+                    <table class="table @if ($users['count'] > 0) table-hover @endif table-outline table-vcenter text-nowrap card-table">
                         <thead>
                         <tr>
                             <th class="text-center w-1"><i class="icon-people"></i></th>
@@ -103,6 +103,11 @@
                                 </td>
                             </tr>
                         @empty {{-- When no user match with the criteria. --}}
+                            <tr>
+                                <td colspan="6" class="text-muted">
+                                    <i class="fe fe-info mr-1"></i> No users found with the matching filter.
+                                </td>
+                            </tr>
                         @endforelse
                         </tbody>
                     </table>
