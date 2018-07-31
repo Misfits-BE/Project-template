@@ -9,6 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Cog\Laravel\Ban\Traits\Bannable;
+use Laravel\Scout\Searchable;
 
 /**
  * Class User
@@ -17,7 +18,7 @@ use Cog\Laravel\Ban\Traits\Bannable;
  */
 class User extends Authenticatable implements BannableContract
 {
-    use Notifiable, HasRoles, SoftDeletes, Bannable;
+    use Notifiable, HasRoles, SoftDeletes, Bannable, Searchable;
 
     /**
      * The attributes that are mass assignable.

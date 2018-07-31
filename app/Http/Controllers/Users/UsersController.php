@@ -49,6 +49,18 @@ class UsersController extends Controller
     }
 
     /**
+     * Search for a specific user in the application. 
+     * 
+     * @param  Request $input The request information collection bag. 
+     * @return View
+     */
+    public function search(Request $input): View 
+    {
+        $users = $this->userRepository->getSearch($input->get('term'));
+        return view('users.index', compact('users'));
+    }
+
+    /**
      * Application view for creating a new user in the application.
      *
      * @todo Implement phpunit test 

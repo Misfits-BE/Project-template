@@ -44,6 +44,18 @@ class UserRepository extends Repository
     }
 
     /**
+     * Search a specific user resource from the storage 
+     * 
+     * @param  string $term The user given piece of data.
+     * @return array
+     */
+    public function getSearch(string $term): array
+    {
+        $query = $this->model->search($term);
+        return ['collection' => $query->paginate(), 'count' => count($query->get())];
+    }
+
+    /**
      * Function to determine the user collection out of the database.
      *
      * @param  null|string $filter The filter parameter for query builder instance.
