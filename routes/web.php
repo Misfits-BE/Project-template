@@ -38,3 +38,6 @@ Route::get('/users/search', 'Users\UsersController@search')->name('users.search'
 Route::get('/users/deactivate/{user}', 'Users\ActiveStateController@create')->name('users.deactivate');
 Route::get('/users/activate/{user}', 'Users\ActiveStateController@destroy')->name('users.activate');
 Route::post('/users/deactivate/{user}', 'Users\ActiveStateController@store')->name('users.deactivate.store');
+
+// Page fragment routes 
+Route::get('/fragments', 'Fragments\IndexController@index')->name('fragments.index');

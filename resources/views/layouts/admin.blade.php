@@ -116,7 +116,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="" class="nav-link"><i class="fe fe-file-text"></i> Pages</a>
+                                    <a href="{{ route('fragments.index') }}" class="nav-link {{ isActiveRoute('fragments.index') }}">
+                                        <i class="fe fe-file-text"></i> Pages
+                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="" class="nav-link"><i class="fe fe-list"></i> Logs</a>
