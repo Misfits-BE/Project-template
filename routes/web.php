@@ -30,6 +30,7 @@ Route::get('/users', 'Users\UsersController@index')->name('users.index');
 Route::get('/users/create', 'Users\UsersController@create')->name('users.create');
 Route::get('/users/delete/{user}', 'Users\UsersController@destroy')->name('users.delete');
 Route::delete('/users/delete/{user}', 'Users\UsersController@destroy')->name('users.destroy');
+Route::get('/users/delete/undo/{user}', 'Users\DestroyController@undo')->name('users.delete.undo');
 Route::post('/users/store', 'Users\UsersController@store')->name('users.store');
 Route::get('/users/search', 'Users\UsersController@search')->name('users.search');
 

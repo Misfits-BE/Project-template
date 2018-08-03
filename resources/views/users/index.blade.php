@@ -90,7 +90,7 @@
                                             <div class="dropdown-divider"></div>
 
                                             @if ($user->trashed()) {{-- User has been deleted --}}
-                                                <a href="" class="dropdown-item">
+                                                <a href="{{ route('users.delete.undo', $user) }}" class="dropdown-item">
                                                     <i class="dropdown-icon text-success fe fe-rotate-ccw"></i> Undo delete
                                                 </a>
                                             @else {{-- User has not been deleted --}}
