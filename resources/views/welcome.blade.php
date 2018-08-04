@@ -58,13 +58,13 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            @if (Route::has('login') && config('auth.routes.authentication'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        @if (config('auth.routes.login'))   <a href="{{ route('login') }}">Login</a>        @endif
+                        @if (config('auth.routes.register')) <a href="{{ route('register') }}">Register</a> @endif
                     @endauth
                 </div>
             @endif
