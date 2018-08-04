@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Composers\GlobalComposer;
+use App\Composers\HomeComposer;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -20,5 +21,6 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->composer('*', GlobalComposer::class);
+        view()->composer('home', HomeComposer::class);
     }
 }
