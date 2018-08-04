@@ -26,7 +26,7 @@
                                 <th>Last editor</th>
                                 <th>Status</th>
                                 <th>Title</th>
-                                <th>Last edit</th>
+                                <th>Activity</th>
                                 <th class="text-center"><i class="icon-settings"></i></th>
                             </tr>
                         </thead>
@@ -34,14 +34,14 @@
                             @forelse ($fragments['content'] as $fragment) {{-- If there are page fragments found --}}
                                 <tr>
                                     <td class="text-center">
-                                        <div class="avatar avatar d-block" style="background-image: url({{ Avatar::create($user->editor->name)->setBorder(0, '#ffffff')->toBase64() }})">
-                                            <span class="avatar-status {{ $user->editor->isOnline() }} ? 'bg-green' : 'bg-red'"></span>
+                                        <div class="avatar avatar d-block" style="background-image: url({{ Avatar::create($fragment->editor->name)->setBorder(0, '#ffffff')->toBase64() }})">
+                                            <span class="avatar-status {{ optional($fragment->editor)->isOnline() }} ? 'bg-green' : 'bg-red'"></span>
                                         </div>
                                     </td>
                                     <td>
-                                        <div>@if ($user->isBanned())<i class="text-danger mr-1 fe fe-lock"></i>@endif {{ $user->name }}</div>
+                                        <div>@if ($fragment->editor->isBanned())<i class="text-danger mr-1 fe fe-lock"></i>@endif {{ $fragment->editor->name }}</div>
                                         <div class="small text-muted">
-                                            Registered: {{ $user->created_at->toFormattedDateString() }}
+                                            Registered: {{ $fragment->editor->created_at ? $fragment->editor->created_at->toFormattedDateString() : '-' }}
                                         </div>
                                     </td>
                                     
@@ -54,10 +54,36 @@
                                     </td> {{-- /// Status indicator --}}
 
                                     <td>{{ $fragment->title }}</td>
-                                    <td>{{ $fragment->updated_at->diffForHUmans() }}</td>
+                                    <td>
+                                        <div class="small text-muted">Last edit</div>
+                                        <div>{{ $fragment->updated_at->diffForHumans() }}</div>
+                                    </td>
                                     
-                                    <td> {{-- Options --}}
+                                    <td class="text-center"> {{-- Options --}}
+                                        <div class="item-action dropdown">
+                                            <a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle btn btn-secondary btn-sm">options</a>
 
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="" class="dropdown-item">
+                                                    <i class="dropdown-icon fe fe-edit-2"></i> Edit fragment
+                                                </a>
+                                                <a href="" class="dropdown-item">
+                                                    <i class="dropdown-icon fe fe-tag"></i> View page
+                                                </a>
+
+                                                <div class="dropdown-divider"></div>
+
+                                                @if ($fragment->is_public) {{-- Page fragment = public --}}
+                                                    <a href="" class="dropdown-item">
+                                                        <i class="dropdown-icon text-danger fe fe-rotate-ccw"></i> Draft version                                                        
+                                                    </a>
+                                                @elseif (! $fragment->is_public) {{-- Page fragment = draft --}}
+                                                    <a href="" class="dropdown-item">
+                                                        <i class="dropdown-icon text-success fe fe-rotate-ccw"></i> Published version
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </td> {{-- /// Options --}}
                                 </tr>                                
                             @empty {{-- When no page fragments are found --}}
