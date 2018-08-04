@@ -34,9 +34,7 @@
                             @forelse ($fragments['content'] as $fragment) {{-- If there are page fragments found --}}
                                 <tr>
                                     <td class="text-center">
-                                        <div class="avatar avatar d-block" style="background-image: url({{ Avatar::create($fragment->editor->name)->setBorder(0, '#ffffff')->toBase64() }})">
-                                            <span class="avatar-status {{ optional($fragment->editor)->isOnline() }} ? 'bg-green' : 'bg-red'"></span>
-                                        </div>
+                                        <div class="avatar avatar d-block" style="background-image: url({{ Avatar::create($fragment->editor->name)->setBorder(0, '#ffffff')->toBase64() }})"></div>
                                     </td>
                                     <td>
                                         <div>@if ($fragment->editor->isBanned())<i class="text-danger mr-1 fe fe-lock"></i>@endif {{ $fragment->editor->name }}</div>

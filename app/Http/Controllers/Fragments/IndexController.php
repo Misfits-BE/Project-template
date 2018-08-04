@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Repositories\FragmentsRepository;
 use App\Models\Fragment;
+use App\Http\Requests\Fragments\FragmentValidator;
 
 /**
  * Class IndexController
@@ -47,6 +48,7 @@ class IndexController extends Controller
     /**
      * Search for a specific page fragment in the application. 
      * 
+     * @todo Implement phpunit test 
      * 
      * @param  Request $request The request information collection bag. 
      * @return View
@@ -62,7 +64,6 @@ class IndexController extends Controller
      * 
      * @todo Implement phpunit test
      * @todo Implement log to Model observer.
-     *! @todo Provide update storage method. 
      * 
      * @param  Fragment $user   The resource entoty from the page fragment
      * @param  string   $status The newly given status from the page fragment. 
@@ -88,5 +89,26 @@ class IndexController extends Controller
     public function edit(Fragment $fragment): View 
     {
         return view('fragments.edit', compact('fragment'));
+    }
+
+    /**
+     * Method for updating a page fragment in the storage
+     * 
+     * @todo Implement phpunit testcase
+     * 
+     * @param  FragmentValidator $input    The form request class that handles the validation. 
+     * @param  Fragment          $fragment The fragment entity from the storage
+     * @return RedirectResponse
+     */
+    public function update(FragmentValidator $input, Fragment $fragment): RedirectResponse
+    {
+        if ($fragment->update($input->all())) {
+            $fragment->editor()->associate($input->user())->save();
+
+            $this->logHandlingOnFragments($fragment, "Updated the page fragment '{$fragment->title}'");
+            flash("The page fragment '{$fragment->title} has been updated.'")->success()->important();
+        }
+
+        return redirect()->route('fragments.index');
     }
 }

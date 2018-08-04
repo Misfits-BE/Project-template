@@ -42,5 +42,6 @@ Route::post('/users/deactivate/{user}', 'Users\ActiveStateController@store')->na
 // Page fragment routes 
 Route::get('/fragments/status/{fragment}/{status}', 'Fragments\IndexController@status')->name('fragments.status');
 Route::get('/fragments/edit/{fragment}', 'Fragments\IndexController@edit')->name('fragments.edit');
+Route::patch('/fragments/edit/{fragment}', 'Fragments\IndexController@update')->name('fragments.update');
 Route::get('/fragments/search', 'Fragments\IndexController@search')->name('fragments.search');
 Route::get('/fragments', 'Fragments\IndexController@index')->name('fragments.index');

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form method="POST" action="" class="card"> {{-- Edit form --}}
+                <form method="POST" action="{{ route('fragments.update', $fragment) }}" class="card"> {{-- Edit form --}}
                     @csrf               {{-- Form field protection --}}
                     @form($fragment)    {{-- Bind data to the form --}}
                     @method('PATCH')    {{-- HTTP method spoofing --}}
@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-md-8 col-sm-8">
                                 <label class="form-label">Title <span class="text-danger">*</span></label>
-                                <input type="text" @input('title') class="form-control" @error('title', 'is-invalid') placeholder="Page fragment title">
+                                <input type="text" @input('title') class="form-control @error('title', 'is-invalid')" placeholder="Page fragment title">
                                 @error('title')
                             </div>
                         </div>
