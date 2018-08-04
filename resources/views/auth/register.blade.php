@@ -33,7 +33,7 @@
 
                             <div class="form-group">
                                 <label class="form-label">{{ __('Confirm Password') }}</label>
-                                <input type="password" class="form-control" @input('password_cinfirmation') placeholder="Confirm password">
+                                <input type="password" class="form-control" @input('password_confirmation') placeholder="Confirm password">
                             </div>
     
                             <div class="form-footer">
@@ -42,7 +42,7 @@
                         </div>
                     </form>
                     <div class="text-center text-muted">
-                        Take me back to the <a href={{ route('login') }}>login</a> page.
+                        Forget it, <a href={{ route('login') }}>send me back</a> to the sign in screen.
                     </div>
                 </div>
             </div>

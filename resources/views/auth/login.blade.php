@@ -18,7 +18,7 @@
                                 @error('email')
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Password<a href="./forgot-password.html" class="float-right small">I forgot password</a></label>
+                                <label class="form-label">Password<a href="{{ route('password.request') }}" class="float-right small">I forgot password</a></label>
                                 <input type="password" class="form-control @error('password', 'is-invalid')" id="exampleInputPassword1" placeholder="Password" @input('password') pb-role="password">
                                 @error('password')
                             </div>
