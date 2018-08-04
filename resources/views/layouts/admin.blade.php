@@ -123,7 +123,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link"><i class="fe fe-list"></i> Logs</a>
+                                    <a href="{{ route('activities.index') }}" class="nav-link {{ isActiveRoute('activities.index') }}">
+                                        <i class="fe fe-list"></i> Logs
+                                    </a>
                                 </li>
                                 
                                 @if (! auth()->check())

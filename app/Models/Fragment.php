@@ -44,6 +44,6 @@ class Fragment extends Model
      */
     public function editor(): BelongsTo 
     {
-        return $this->belongsTo(User::class)->withDefault(['name' => config('app.name')]);
+        return $this->belongsTo(User::class)->withDefault(['name' => 'Unknown']);
     }
 }

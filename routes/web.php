@@ -39,6 +39,10 @@ Route::get('/users/deactivate/{user}', 'Users\ActiveStateController@create')->na
 Route::get('/users/activate/{user}', 'Users\ActiveStateController@destroy')->name('users.activate');
 Route::post('/users/deactivate/{user}', 'Users\ActiveStateController@store')->name('users.deactivate.store');
 
+// Activity overview logs 
+Route::get('/activities', 'ActivityLogs\IndexController@index')->name('activities.index');
+Route::get('/activities/search', 'ActivityLogs\IndexController@search')->name('activities.search');
+
 // Page fragment routes 
 Route::get('/fragments/status/{fragment}/{status}', 'Fragments\IndexController@status')->name('fragments.status');
 Route::get('/fragments/edit/{fragment}', 'Fragments\IndexController@edit')->name('fragments.edit');

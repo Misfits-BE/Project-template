@@ -37,7 +37,7 @@ class FragmentsRepository extends Repository
     /**
      * Search for a specific fragment resource in the storage. 
      * 
-     * @param  string $term The yser given search term. 
+     * @param  string $term The user given search term. 
      * @return array 
      */
     public function getSearch(string $term): array 
