@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
 
         // Run other seeders in the system.
         $this->call(AclTableSeeder::class);
+        $this->call(PageFragmentSeeder::class);
     }
 }

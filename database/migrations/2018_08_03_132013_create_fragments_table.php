@@ -20,7 +20,7 @@ class CreateFragmentsTable extends Migration
             $table->increments('id');
             $table->integer('editor_id')->unsigned()->nullable();
             $table->boolean('is_public'); 
-            $table->string('route'); 
+            $table->string('route')->unique(); 
             $table->string('title'); 
             $table->text('content');                        
             $table->timestamps();

@@ -13,7 +13,7 @@ use App\User;
 $factory->define(Fragment::class, function (Faker $faker): array {
     return [
         'editor_id' => factory(User::class)->create()->id,
-        'is_public' => $faker->boolean, 
+        'is_public' => $faker->boolean(), 
         'route' => 'factory.route', 
         'title' => $faker->sentence, 
         'content' => $faker->paragraph,

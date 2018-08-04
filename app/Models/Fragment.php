@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\User;
 
 /**
  * Class Fragment 
@@ -24,4 +26,21 @@ class Fragment extends Model
      * @var array
      */
     protected $casts = ['is_public' => 'boolean'];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at'];
+
+    /**
+     * Data relation for the page fragment editor information. 
+     * 
+     * @return BelongsTo 
+     */
+    public function editor(): BelongsTo 
+    {
+        return $this->belongsTo(User::class)->withDefault(['name' => config('app.name')]);
+    }
 }
