@@ -11,9 +11,6 @@
 |
 */
 
-// authentication routes 
-Auth::routes();
-
 // Welcome routes 
 Route::get('/', 'HomeController@welcome')->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
