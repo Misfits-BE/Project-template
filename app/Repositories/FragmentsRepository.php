@@ -35,10 +35,22 @@ class FragmentsRepository extends Repository
     }
 
     /**
+     * Search for a specific fragment resource in the storage. 
+     * 
+     * @param  string $term The yser given search term. 
+     * @return array 
+     */
+    public function getSearch(string $term): array 
+    {
+        $dbQuery = $this->model->search($term); 
+        return ['content' => $dbQuery->paginate(), 'count' => count($dbQuery->get())];
+    }
+
+    /**
      * Update the page fragment public status. 
      * 
-     * @param  Fragment $fragment
-     * @param  string   $status 
+     * @param  Fragment $fragment   The fragment entity from the resource.
+     * @param  string   $status     The is_pulic status identifier for the resource.
      * @return RedirectResponse
      */
     public function updateStatus(Fragment $fragment, string $status): bool 

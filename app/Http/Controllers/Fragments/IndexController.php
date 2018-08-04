@@ -40,7 +40,20 @@ class IndexController extends Controller
      */
     public function index(): View
     {
-        $fragments = $this->fragmentRepository->getIndexResults();
+        $fragments = $this->fragmentRepository->getIndexResults(15);
+        return view('fragments.index', compact('fragments'));
+    }
+
+    /**
+     * Search for a specific page fragment in the application. 
+     * 
+     * 
+     * @param  Request $request The request information collection bag. 
+     * @return View
+     */
+    public function search(Request $request): View
+    {
+        $fragments = $this->fragmentRepository->getSearch($request->get('term')); 
         return view('fragments.index', compact('fragments'));
     }
 
@@ -49,6 +62,7 @@ class IndexController extends Controller
      * 
      * @todo Implement phpunit test
      * @todo Implement log to Model observer.
+     *! @todo Provide update storage method. 
      * 
      * @param  Fragment $user   The resource entoty from the page fragment
      * @param  string   $status The newly given status from the page fragment. 
@@ -65,6 +79,9 @@ class IndexController extends Controller
 
     /**
      * Edit view for a page fragment. 
+     * 
+     * @todo Implement phpunit test
+     * 
      * @param  Fragment $fragment The resource entity form the page fragment.
      * @return View
      */

@@ -9,7 +9,7 @@
             </div>
 
             <div class="page-options d-flex">
-                <form method="GET" action="" class="input-icon ml-2">
+                <form method="GET" action="{{ route('fragments.search') }}" class="input-icon ml-2">
                     <span class="input-icon-addon"><i class="fe fe-search"></i></span>
                     <input @input('term') type="text" class="form-control w-10" placeholder="Search page fragment">
                 </form>

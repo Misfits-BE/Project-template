@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\User;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Fragment 
@@ -13,6 +14,8 @@ use App\User;
  */
 class Fragment extends Model
 {
+    use Searchable; 
+    
     /**
      * Mass-assign field for the page fragments. 
      * 
