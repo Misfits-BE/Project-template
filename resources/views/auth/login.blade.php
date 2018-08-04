@@ -6,10 +6,9 @@
             <div class="row">
                 <div class="col col-login mx-auto">
                     <div class="text-center mb-6">
-                        <img src="{{asset('images/brand.svg') }}" class="h-6" alt="">
+                        <img src="{{ asset('images/brand.svg') }}" class="h-6" alt="{{ config('app.name') }}">
                     </div>
-                    <form class="card" action="{{ route('login') }}" method="post" pb-autologin="true"
-                          autocomplete="off">
+                    <form class="card" action="{{ route('login') }}" method="post" pb-autologin="true" autocomplete="off">
                         @csrf {{-- Form field protection --}}
                         <div class="card-body p-6">
                             <div class="card-title">Login to your account</div>
