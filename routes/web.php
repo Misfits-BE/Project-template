@@ -40,4 +40,6 @@ Route::get('/users/activate/{user}', 'Users\ActiveStateController@destroy')->nam
 Route::post('/users/deactivate/{user}', 'Users\ActiveStateController@store')->name('users.deactivate.store');
 
 // Page fragment routes 
+Route::get('/fragments/status/{fragment}/{status}', 'Fragments\IndexController@status')->name('fragments.status');
+Route::get('/fragments/edit/{fragment}', 'Fragments\IndexController@edit')->name('fragments.edit');
 Route::get('/fragments', 'Fragments\IndexController@index')->name('fragments.index');

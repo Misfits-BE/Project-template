@@ -64,7 +64,7 @@
                                             <a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle btn btn-secondary btn-sm">options</a>
 
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="" class="dropdown-item">
+                                                <a href="{{ route('fragments.edit', $fragment) }}" class="dropdown-item">
                                                     <i class="dropdown-icon fe fe-edit-2"></i> Edit fragment
                                                 </a>
                                                 <a href="" class="dropdown-item">
@@ -74,11 +74,11 @@
                                                 <div class="dropdown-divider"></div>
 
                                                 @if ($fragment->is_public) {{-- Page fragment = public --}}
-                                                    <a href="" class="dropdown-item">
+                                                    <a href="{{ route('fragments.status', ['fragment' => $fragment, 'status' => 'draft']) }}" class="dropdown-item">
                                                         <i class="dropdown-icon text-danger fe fe-rotate-ccw"></i> Draft version                                                        
                                                     </a>
                                                 @elseif (! $fragment->is_public) {{-- Page fragment = draft --}}
-                                                    <a href="" class="dropdown-item">
+                                                    <a href="{{ route('fragments.status', ['fragment' => $fragment, 'status' => 'public']) }}" class="dropdown-item">
                                                         <i class="dropdown-icon text-success fe fe-rotate-ccw"></i> Published version
                                                     </a>
                                                 @endif

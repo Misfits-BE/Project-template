@@ -29,11 +29,23 @@ trait ActivityLog
      * Helper for logging a handling on the user resources
      * 
      * @param  mixed  $model    The resource entity were the handling happend on.
-     * @param  string $message  The message strings that needs to be logged.
+     * @param  string $message  The message string that needs to be logged.
      * @return void
      */
     public function logHandlingOnUsers($model, string $message): void 
     {
         $this->addActivityLog($model, $message, 'users');
+    }
+
+    /** 
+     * Helper for logging a handling on the page fragments resources. 
+     * 
+     * @param  mixed  $model    The resource entity where the handling happend on. 
+     * @param  string $message  The message string that needs to be logged. 
+     * @return void 
+     */
+    public function logHandlingOnFragments($model, string $message): void 
+    {
+        $this->addActivityLog($model, $message, 'fragments');
     }
 }
