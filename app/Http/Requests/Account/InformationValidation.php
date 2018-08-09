@@ -23,8 +23,6 @@ class InformationValidation extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @todo Implement unique validation and database config for username. 
      * 
      * @return array
      */

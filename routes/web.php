@@ -11,7 +11,7 @@
 |
 */
 
-// Welcome routes - TODO: needs testing
+// Welcome routes
 Route::get('/', 'HomeController@welcome')->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 

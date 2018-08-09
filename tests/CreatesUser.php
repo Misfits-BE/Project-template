@@ -37,15 +37,17 @@ trait CreatesUser
     }
 
     /**
-     * Create an inactive user in the testing database.
+     * Create a blokced user in the testing database.
      *
      * @return User
      */
     public function createUserInactive(): User
     {
         $role = $this->createRole('admin');
-        $user = factory(User::class)->create()->assignRole($role)->ban();
 
-        return User::find($user->id);
+        $user = factory(User::class)->create()->assignRole($role);
+        $user->ban();
+
+        return $user;
     }
 }
