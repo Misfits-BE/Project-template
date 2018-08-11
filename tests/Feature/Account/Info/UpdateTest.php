@@ -30,11 +30,11 @@ class UpdateTest extends TestCase
 
     public function success(): void
     {
-
+        //
     }
 
     public function incorrectRole(): void
     {
-
+        //
     }
 }
