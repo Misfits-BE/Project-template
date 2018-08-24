@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
+/**
+ * Class HomeController 
+ * 
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**
@@ -13,15 +18,27 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'role:admin', 'forbid-banned-user'])->only(['index']);
+    }
+
+    /**
+     * Show the application welcome page 
+     * 
+     * @return View 
+     */
+    public function welcome(): View 
+    {
+        return view('welcome');
     }
 
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @see \App\Composers\HomeComposer::class for the default data in the view
+     * 
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('home');
     }

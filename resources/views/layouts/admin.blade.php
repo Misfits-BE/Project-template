@@ -17,16 +17,18 @@
         <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
         <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
         
-        <title>{{ asset('app.name') }}</title>
+        <title>{{ config('app.name') }}</title>
         
         {{-- Javascripts --}}
         <script src="{{ asset('js/app.js') }}" async></script>
+        @stack('scripts') {{-- Page specific javascript --}}
 
         {{-- Stylesheets --}}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+        @stack('stylesheets') {{-- Page pecific stylesheets --}}
     </head>
     <body>
     <div class="page" id="app">
@@ -62,28 +64,28 @@
                 
                                 <div class="dropdown">
                                     <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                                        <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
+                                        <span class="avatar" style="background-image: url({{ Avatar::create($authUser->name)->setBorder(0, '#ffffff')->toBase64() }})"></span>
                                         <span class="ml-2 d-none d-lg-block">
                                         
-                                        <span class="text-default">Jane Pearson</span>
-                                            <small class="text-muted d-block mt-1">Administrator</small>
+                                        <span class="text-default">{{ ucfirst($authUser->email) }}</span>
+                                            <small class="text-muted d-block mt-1">{{ ucfirst($authUser->name) }}</small>
                                         </span>
                                     </a>
                   
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" href="#">
-                                            <i class="dropdown-icon fe fe-settings"></i> Settings
+                                        <a class="dropdown-item" href="{{ route('account.info') }}">
+                                            <i class="dropdown-icon fe fe-user"></i> Settings
                                         </a>
                     
                                         <div class="dropdown-divider"></div>
-                    
-                                        <a class="dropdown-item" href="#">
-                                            <i class="dropdown-icon fe fe-help-circle"></i> Need help?
-                                        </a>
-                                        
-                                        <a class="dropdown-item" href="#">
+
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class="dropdown-icon fe fe-log-out"></i> Sign out
                                         </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf {{-- Form field protection --}}
+                                        </form>
                                     </div>
                                 </div>
                             @endif
@@ -99,22 +101,31 @@
            <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
 	            <div class="container">
 		            <div class="row align-items-center">
-			            <div class="col-lg-3 ml-auto">
-				            <form class="input-icon my-3 my-lg-0">
-					            <input type="search" class="form-control header-search" placeholder="Search petition…" tabindex="1">
-					            <div class="input-icon-addon">
-						            <i class="fe fe-search"></i>
-					            </div>
-				            </form>
-			            </div>
-			            
+                        <div class="col-lg-3 ml-auto">
+                            {{-- Place for optional search bar --}}
+                        </div>
+
                         <div class="col-lg order-lg-first">
 				            <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
 	                            <li class="nav-item">
-		                            <a href="{{ url('/') }}" class="nav-link"><i class="fe fe-home"></i> Home</a>
+		                            <a href="{{ route('home') }}" class="nav-link {{ isActiveRoute('home') }}">
+                                        <i class="fe fe-home"></i> Home
+                                    </a>
 	                            </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link"><i class="fe fe-file-text"></i> Petitions</a>
+                                    <a href="{{ route('users.index')  }}" class="nav-link {{ areActiveRoutes(['users.index', 'users.create', 'users.delete', 'users.deactivate']) }}">
+                                        <i class="fe fe-users"></i> Users
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('fragments.index') }}" class="nav-link {{ areActiveRoutes(['fragments.index', 'fragment.edit']) }}">
+                                        <i class="fe fe-file-text"></i> Pages
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('activities.index') }}" class="nav-link {{ isActiveRoute('activities.index') }}">
+                                        <i class="fe fe-list"></i> Logs
+                                    </a>
                                 </li>
                                 
                                 @if (! auth()->check())
@@ -133,44 +144,6 @@
 
             <div class="my-3 my-md-5">
                 @yield('content')
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">First link</a></li>
-                                    <li><a href="#">Second link</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">Third link</a></li>
-                                    <li><a href="#">Fourth link</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">Fifth link</a></li>
-                                    <li><a href="#">Sixth link</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">Other link</a></li>
-                                    <li><a href="#">Last link</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mt-4 mt-lg-0">
-                        Lorem ipsum dolor sit amet, et amet vitae fringilla dolor. Vel morbi blandit sed ipsumo.
-                    </div>
-                </div>
             </div>
         </div>
 
